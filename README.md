@@ -100,11 +100,11 @@ Si se desea un análisis exhaustivo partida por partida, se sugiere ejecutar el 
 * white_username: Nombre de usuario jugando con blancas.
 * white_result: win, resigned, insufficient, checkmated, timeout.
 * white_rating: ELO rating para el jugador de blancas.
-* white_accuracy: si la partida tuvo revisión, porcentaje de precisión en movimientos para blancas.
+* white_accuracy: si la partida tuvo revisión, porcentaje de precisión en movimientos para blancas (Chess.com).
 * black_username: Nombre de usuario jugando con negras.
 * black_result: win, resigned, insufficient, checkmated, timeout.
 * black_rating: ELO rating para el jugador de negras.
-* black_accuracy: si la partida tuvo revisión, porcentaje de precisión en movimientos para negras.
+* black_accuracy: si la partida tuvo revisión, porcentaje de precisión en movimientos para negras (Chess.com).
 * eco: Encyclopaedia of Chess Openings. tipo de apertura.
 * game_format: Formato de juego: rapid, blitz, classical, bullet, etc.
 * game_result: resultado en notación estándar: (1-0, 0-1, 1/2-1/2).
@@ -112,6 +112,6 @@ Si se desea un análisis exhaustivo partida por partida, se sugiere ejecutar el 
 
 # Observaciones:
 
-* Este dataset solo incluye juegos de Chess.com, es decir, no incluye juegos en Lichess o partidas reales.
+* Este dataset solo incluye juegos de Chess.com, incluye de manera experimental juegos provenientes de lichess.com, no se incluyen partidas reales.
 * Los movimientos fueron extraídos y convertidos con la librería `chess` para `python` de las partidas de formato `pgn` a un formato normalizado SAN.
 * Los ratings ELO corresponden a los instantes en los que los participantes tenían en el instante del encuentro.
