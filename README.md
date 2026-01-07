@@ -9,7 +9,7 @@ El siguiente repositorio contiene una colección de juegos de Magnus Carlsen en 
 * **Formatos de juego**: Classical, Rapid, Blitz, Bullet
 * **Notación de movimientos**: SAN normalizado.
 
-# API Overview
+# Chess.com API Overview
 
 En este apartado se documenta brevemente el cómo consumir la API pública de Chess.com. Esta API es de acceso gratuito, de solo lectura y no requiere claves de autenticación, pero exige el cumplimiento de normas de etiqueta en las cabeceras.
 
@@ -93,6 +93,50 @@ headers = {
 
 Si se desea un análisis exhaustivo partida por partida, se sugiere ejecutar el script `main.py` para que este descargue todos los juegos completos en formato `pgn` para su posterior tratamiento.
 
+# Lichess API Overview
+
+A diferencia de Chess.com, la API de Lichess está diseñada para el streaming de datos en lugar de la paginación por meses. Esto permite descargar historiales masivos en una sola conexión HTTP.
+
+Todas las peticiones se realizan a:
+
+```http
+https://lichess.org/api/
+```
+
+## Headers requeridos
+
+Es pertinente y obligatorio incluir la cabecera `Accept`.
+
+```python
+headers = {
+    'Accept': 'application/x-ndjson'
+}
+```
+
+## Endpoint usado:
+
+Obtiene el historial completo (o parcial) de un usuario mediante streaming.
+
+* **Método**: `GET`
+* **Endpoint**: `/games/user/{username}`
+
+### Parámetros Útiles (Query Params):
+
+* `max`: Número máximo de partidas (ej. 50). Si se omite, descarga todas.
+* `since` / `until`: Timestamps (en milisegundos) para filtrar por fecha.
+* `pgnInJson`: true (Incluye el PGN dentro del objeto JSON).
+* `clocks`: true (Incluye los tiempos de reloj por jugada).
+* `evals`: true (Incluye evaluaciones de Stockfish si existen).
+* `opening`: true (Incluye el código ECO y nombre de la apertura).
+* 
+### Respuesta (NDJSON)
+
+```json
+{"id":"game1", "players":{...}, "moves":"e4 e5..."}
+{"id":"game2", "players":{...}, "moves":"d4 d5..."}
+{"id":"game3", "players":{...}, "moves":"Nf3 d5..."}
+```
+
 # Columnas:
 
 * game_id: Identificador unico del juego, se puede usar también como parte de la url para visualizar la partida en Chess.com de la forma `https://www.chess.com/game/live/{game_id}`.
@@ -112,6 +156,6 @@ Si se desea un análisis exhaustivo partida por partida, se sugiere ejecutar el 
 
 # Observaciones:
 
-* Este dataset solo incluye juegos de Chess.com, incluye de manera experimental juegos provenientes de lichess.com, no se incluyen partidas reales.
+* Este dataset incluye juegos de Chess.com, incluye también de manera experimental juegos provenientes de lichess.com, no se incluyen partidas reales.
 * Los movimientos fueron extraídos y convertidos con la librería `chess` para `python` de las partidas de formato `pgn` a un formato normalizado SAN.
 * Los ratings ELO corresponden a los instantes en los que los participantes tenían en el instante del encuentro.
