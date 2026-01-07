@@ -10,7 +10,7 @@ import requests
 from chess.pgn import StringExporter, read_game, Game
 from src.constants import Constants as C
 
-Pseudonyms = ["MagnusCarlsen", "DrNykterstein"]
+Pseudonyms = ["MagnusCarlsen", "DrNykterstein"]  # DrNykterstein only available on lichess
 PseudonymLiteral = Literal["MagnusCarlsen", "DrNykterstein"]
 
 
