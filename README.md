@@ -128,7 +128,7 @@ Obtiene el historial completo (o parcial) de un usuario mediante streaming.
 * `clocks`: true (Incluye los tiempos de reloj por jugada).
 * `evals`: true (Incluye evaluaciones de Stockfish si existen).
 * `opening`: true (Incluye el código ECO y nombre de la apertura).
-* 
+
 ### Respuesta (NDJSON)
 
 ```json
