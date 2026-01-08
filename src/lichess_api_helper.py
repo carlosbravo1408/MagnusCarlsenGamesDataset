@@ -12,8 +12,14 @@ from chess.pgn import read_game
 from src.constants import Constants as C
 
 
-Pseudonyms = ["MagnusCarlsen", "DrNykterstein"]
-PseudonymLiteral = Literal["MagnusCarlsen", "DrNykterstein"]
+Pseudonyms = [
+    "MagnusCarlsen", "DrNykterstein", "DrDrunkenstein", "STL_Carlsen",
+    "DannytheDonkey", "manwithavan", "damnsaltythatsport", "DrGrekenstein"
+]
+PseudonymLiteral = Literal[
+    "MagnusCarlsen", "DrNykterstein", "DrDrunkenstein", "STL_Carlsen",
+    "DannytheDonkey", "manwithavan", "damnsaltythatsport", "DrGrekenstein"
+]
 
 
 class LichessAPIHelper(APIHelper):
