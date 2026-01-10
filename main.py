@@ -3,7 +3,10 @@ from src.lichess_api_helper import LichessAPIHelper
 
 if __name__ == "__main__":
     chess_dot_com_api_helper = ChessComApiHelper()
-    chess_dot_com_api_helper.get_chess_games(user_name="MagnusCarlsen")
+    chess_dot_com_api_helper.get_chess_games(user_name="MagnusCarlsen")  # Cuenta con mayor actividad
 
-    #lichess_api_helper = LichessAPIHelper()
-    #lichess_api_helper.get_chess_games(user_name="DrNykterstein")
+    lichess_api_helper = LichessAPIHelper()
+    lichess_api_helper.get_chess_games(user_name="DrNykterstein")  # Cuenta con mayor actividad
+
+    # lichess_api_helper = LichessAPIHelper()
+    # lichess_api_helper.get_chess_games(user_name="STL_Carlsen")
