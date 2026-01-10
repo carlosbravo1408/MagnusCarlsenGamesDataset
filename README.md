@@ -1,12 +1,12 @@
-# Dataset de partidas de Magnus Carlsen en [chess.com](www.chess.com)
+# Dataset de partidas de Magnus Carlsen
 
-El siguiente repositorio contiene una colección de juegos de Magnus Carlsen en [Chess,com](www.chess.com), con datos estructurados a nivel de juegos con metadatos necesarios y movimientos normalizados bajo el formato SAN (Standard Algebraic Notation).
+El siguiente repositorio contiene una colección de juegos de Magnus Carlsen en [Chess.com](www.chess.com) y [Lichess.org](www.lichess.org), con datos estructurados a nivel de juegos con metadatos necesarios y movimientos normalizados bajo el formato SAN (Standard Algebraic Notation).
 
 # Dataset Overview:
 
-* **Origen**: API publica de [Chess.com](https://www.chess.com/news/view/published-data-api)
-* **Alcance**: Todas las partidas disponibles en Chess.com hasta 05/01/2025
-* **Formatos de juego**: Classical, Rapid, Blitz, Bullet
+* **Origen**: API pública de [Chess.com](https://www.chess.com/news/view/published-data-api) y [Lichess.org](www.lichess.org)
+* **Alcance**: Todas las partidas disponibles en multiples cuentas hasta 06/01/2025
+* **Formatos de juego**: Classical, Rapid, Blitz, Bullet, UltraBullet
 * **Notación de movimientos**: SAN normalizado.
 
 # Chess.com API Overview
@@ -156,6 +156,6 @@ Obtiene el historial completo (o parcial) de un usuario mediante streaming.
 
 # Observaciones:
 
-* Este dataset incluye juegos de Chess.com, incluye también de manera experimental juegos provenientes de lichess.com, no se incluyen partidas reales.
+* Este dataset incluye juegos de Chess.com e incluye también de manera experimental juegos provenientes de lichess.com, no se incluyen partidas reales.
 * Los movimientos fueron extraídos y convertidos con la librería `chess` para `python` de las partidas de formato `pgn` a un formato normalizado SAN.
 * Los ratings ELO corresponden a los instantes en los que los participantes tenían en el instante del encuentro.
