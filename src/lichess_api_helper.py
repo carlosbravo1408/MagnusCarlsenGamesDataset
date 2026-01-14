@@ -7,7 +7,7 @@ from typing import Literal, Optional, Dict, Any
 
 import requests
 
-from src.base_api_helper import APIHelper
+from src.base_api_helper import BaseAPIHelper
 from chess.pgn import read_game
 from src.constants import Constants as C
 
@@ -22,7 +22,7 @@ PseudonymLiteral = Literal[
 ]
 
 
-class LichessAPIHelper(APIHelper):
+class LichessBaseAPIHelper(BaseAPIHelper):
     base_url = "https://lichess.org/api/games/user/{user_name}"
     params = {
         "pgnInJson": True,
@@ -71,14 +71,15 @@ class LichessAPIHelper(APIHelper):
                 print(f"Error: {e}")
 
     def _extract_chess_games(self, game_json: Dict[str, Any]) -> Dict[str, Any]:
-        created_at = game_json.get("createdAt", 0) / 1000
-        dt_object = datetime.fromtimestamp(created_at).strftime('%Y-%m-%d %H:%M:%S')
+        timestamp = game_json.get("createdAt", 0) / 1000
+        dt_object = datetime.fromtimestamp(timestamp).strftime('%Y-%m-%d %H:%M:%S')
         white_p = game_json["players"]["white"]
         black_p = game_json["players"]["black"]
         game = read_game(io.StringIO(game_json.get("pgn")))
         return {
             C.GAME_ID: game_json["id"],
             C.DATETIME: dt_object,
+            C.TIMESTAMP: timestamp,
             C.WHITE_USERNAME: white_p.get("user", {}).get("name", "Anon"),
             C.WHITE_RATING: white_p.get("rating"),
             C.WHITE_RESULT: "win" if game_json.get("winner") == "white" else "loss",
@@ -88,8 +89,8 @@ class LichessAPIHelper(APIHelper):
             C.BLACK_RESULT: "win" if game_json.get("winner") == "black" else "loss",
             C.BLACK_ACCURACY: None,
             C.ECO: game_json.get("opening", {}).get("eco"),
-            C.GAME_FORMAT: game_json.get("speed"), # bullet, blitz
+            C.GAME_FORMAT: game_json.get("speed"),
             C.GAME_RESULT: game.headers.get(C.PGN_RESULT),
             C.PGN: game_json.get("pgn"),
-            C.SAN_MOVES: APIHelper._get_san_moves(game),
+            C.SAN_MOVES: BaseAPIHelper._get_san_moves(game),
         }

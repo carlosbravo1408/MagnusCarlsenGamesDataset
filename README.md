@@ -141,6 +141,7 @@ Obtiene el historial completo (o parcial) de un usuario mediante streaming.
 
 * game_id: Identificador unico del juego, se puede usar también como parte de la url para visualizar la partida en Chess.com de la forma `https://www.chess.com/game/live/{game_id}`.
 * datetime: fecha del encuentro en formato `YYYY-MM-DD HH:mm:SS`.
+* timestamp: Unix timestamp.
 * white_username: Nombre de usuario jugando con blancas.
 * white_result: win, resigned, insufficient, checkmated, timeout.
 * white_rating: ELO rating para el jugador de blancas.

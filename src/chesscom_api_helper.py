@@ -7,7 +7,7 @@ from typing import Literal
 
 import requests
 
-from src.base_api_helper import APIHelper
+from src.base_api_helper import BaseAPIHelper
 from chess.pgn import read_game
 from src.constants import Constants as C
 
@@ -16,7 +16,7 @@ Pseudonyms = ["MagnusCarlsen"]
 PseudonymLiteral = Literal["MagnusCarlsen"]
 
 
-class ChessComApiHelper(APIHelper):
+class ChessComBaseAPIHelper(BaseAPIHelper):
     base_url = "https://api.chess.com/pub/player/{user_name}/games/archives"
 
     headers = {
@@ -71,11 +71,13 @@ class ChessComApiHelper(APIHelper):
         if not pgn_game:
             return None
         game = read_game(io.StringIO(pgn_game))
+        timestamp = game_json.get(C.END_TIME, 0)
         dt_object = datetime \
-            .fromtimestamp(game_json.get(C.END_TIME, 0)) \
+            .fromtimestamp(timestamp) \
             .strftime('%Y-%m-%d %H:%M:%S')
         return {
             C.GAME_ID: game_json[C.URL].split("/")[-1],
+            C.TIMESTAMP: timestamp,
             C.DATETIME: dt_object,
             C.WHITE_USERNAME: game_json[C.WHITE][C.USERNAME],
             C.WHITE_RATING: game_json[C.WHITE][C.RATING],

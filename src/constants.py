@@ -3,11 +3,11 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class __Consts:
+    GAME_ID = "game_id"
+    DATETIME = "datetime"
+    TIMESTAMP = "timestamp"
 
-    GAME_ID="game_id"
-    DATETIME="datetime"
-
-    WHITE_USERNAME="white_username"
+    WHITE_USERNAME = "white_username"
     WHITE_RATING = "white_rating"
     WHITE_RESULT = "white_result"
     WHITE_ACCURACY = "white_accuracy"
@@ -39,9 +39,11 @@ class __Consts:
     URL = "url"
 
     CSV_COLUMNS = [
-        "game_id", "datetime", "white_username", "white_rating", "white_result",
-        "white_accuracy", "black_username", "black_rating", "black_result",
-        "black_accuracy", "eco", "game_format", "game_result", "san_moves"
+        "game_id", "timestamp", "datetime", "white_username", "white_rating",
+        "white_result", "white_accuracy", "black_username", "black_rating",
+        "black_result", "black_accuracy", "eco", "game_format",
+        "game_result", "san_moves"
     ]
+
 
 Constants = __Consts()

@@ -9,7 +9,7 @@ Pseudonyms = ["MagnusCarlsen", "DrNykterstein"]
 PseudonymLiteral = Literal["MagnusCarlsen", "DrNykterstein"]
 
 
-class APIHelper:
+class BaseAPIHelper:
 
     base_url = "https://api.chess.com/pub/player/{user_name}/games/archives"
 
